@@ -26,8 +26,15 @@ export default defineConfig({
     ],
     cors: true
   },
+<<<<<<< HEAD
   build: {
     outDir: 'dist',
     sourcemap: false
   }
+=======
+ build: {
+  outDir: 'dist',
+  sourcemap: false
+}
+>>>>>>> 20bb709e771ddd20e9689e248621a2d8a7874fb8
 })
