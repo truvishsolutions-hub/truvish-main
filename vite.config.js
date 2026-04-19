@@ -7,34 +7,15 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
-    allowedHosts: [
-      'truvish-main-production.up.railway.app',
-      '.railway.app',
-      'localhost',
-      '127.0.0.1'
-    ],
-    cors: true
+    allowedHosts: 'all'
   },
   preview: {
     host: true,
     port: 3000,
-    allowedHosts: [
-      'truvish-main-production.up.railway.app',
-      '.railway.app',
-      'localhost',
-      '127.0.0.1'
-    ],
-    cors: true
+    allowedHosts: 'all'
   },
-<<<<<<< HEAD
   build: {
     outDir: 'dist',
     sourcemap: false
   }
-=======
- build: {
-  outDir: 'dist',
-  sourcemap: false
-}
->>>>>>> 20bb709e771ddd20e9689e248621a2d8a7874fb8
 })
