@@ -1,0 +1,227 @@
+/* src/styles/Footer.css */
+.footer {
+  background: var(--darker);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 72px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+/* Footer Brand - Logo Styles */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.9;
+}
+
+/* Icon Image */
+.footer-logo-icon {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform var(--transition-fast);
+}
+
+.footer-logo:hover .footer-logo-icon {
+  transform: scale(1.04);
+}
+
+/* Logo Stack */
+.footer-logo-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+/* TruVish Text - White */
+.footer-logo-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Tagline Text - Light Gray/White */
+.footer-logo-word {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 280px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer Columns */
+.footer-col h5 {
+  color: var(--white);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-col ul li a:hover {
+  color: var(--teal);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+/* Social Icons - Enhanced */
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 0;
+}
+
+.footer-socials a {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+  background: var(--teal);
+  color: var(--white);
+  transform: translateY(-3px);
+}
+
+/* Divider */
+.divider-dark {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+  }
+
+  .footer-logo-icon {
+    height: 42px;
+  }
+
+  .footer-logo-name {
+    font-size: 1.2rem;
+  }
+
+  .footer-logo-word {
+    font-size: 8px;
+  }
+
+  .footer-socials {
+    margin-top: 16px;
+  }
+
+  .footer-socials a {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 48px 0 24px;
+  }
+
+  .footer-logo-icon {
+    height: 36px;
+  }
+
+  .footer-logo-name {
+    font-size: 1rem;
+  }
+
+  .footer-logo-word {
+    font-size: 7px;
+  }
+
+  .footer-socials a {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+}
