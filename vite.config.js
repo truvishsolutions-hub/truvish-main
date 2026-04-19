@@ -26,9 +26,8 @@ export default defineConfig({
     ],
     cors: true
   },
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-    minify: 'terser'
-  }
+ build: {
+  outDir: 'dist',
+  sourcemap: false
+}
 })
