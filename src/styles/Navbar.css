@@ -70,20 +70,16 @@
   margin: 0;
 }
 
-/* Tagline Image - Larger */
-.nav-logo-word-img {
-  height: 18px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Tagline Text Fallback */
+/* Tagline Text */
 .nav-logo-word {
-  font-size: 11px;
-  color: var(--gray-500);
-  letter-spacing: 0.02em;
-  line-height: 1.2;
+  font-size: 15px;
+  color: #000b29;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  display: block;
+  margin-top: -1px;
 }
 
 .nav-right {
@@ -264,10 +260,6 @@
     font-size: 1.5rem;
   }
 
-  .nav-logo-word-img {
-    height: 14px;
-  }
-
   .nav-logo-word {
     font-size: 9px;
   }
@@ -292,10 +284,6 @@
 
   .nav-logo-name {
     font-size: 1.3rem;
-  }
-
-  .nav-logo-word-img {
-    height: 12px;
   }
 
   .nav-logo-word {

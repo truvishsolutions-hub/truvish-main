@@ -79,20 +79,7 @@ const Navbar = () => {
             />
             <div className="nav-logo-stack">
               <span className="nav-logo-name">TruVish</span>
-              <img
-                src="/images/truvish-wordmark.png"
-                alt="A Partner in Reward Marketing"
-                className="nav-logo-word-img"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  const parent = e.target.parentElement;
-                  if (parent) {
-                    const fallback = parent.querySelector('.nav-logo-word');
-                    if (fallback) fallback.style.display = 'block';
-                  }
-                }}
-              />
-              <span className="nav-logo-word" style={{ display: 'none' }}>A Partner in Reward Marketing</span>
+              <span className="nav-logo-word">Performance Rewards Simplified</span>
             </div>
           </div>
           <div className="nav-right">

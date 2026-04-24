@@ -77,7 +77,7 @@ const Footer = () => {
               />
               <div className="footer-logo-stack">
                 <span className="footer-logo-name">TruVish</span>
-                <span className="footer-logo-word">A Partner in Reward Marketing</span>
+                <span className="footer-logo-word">Performance Reward Simplified</span>
               </div>
             </div>
             <p>{footerContent.brandDescription}</p>
