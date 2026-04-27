@@ -53,6 +53,11 @@ const D2CBusinessOwners = () => {
                 <div className="audience-step-number">3</div>
                 <div className="audience-step-text">Returns & repeats</div>
               </div>
+
+              <Link to="/for-retail-business" className="audience-next-link">
+                <span className="link-text">Explore next use cases</span>
+                <span className="link-arrow">→</span>
+              </Link>
             </div>
           </div>
         </div>

@@ -2,10 +2,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/BookADemo.css';
 
-const initialErrors = { name: '', email: '', phone: '', api: '' };
+const initialErrors = {
+  name: '',
+  email: '',
+  phone: '',
+  api: '',
+};
+
+const initialForm = {
+  name: '',
+  email: '',
+  phone: '',
+};
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'https://truvish-backend-production.up.railway.app';
 
 const BookADemo = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState(initialErrors);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,8 +45,17 @@ const BookADemo = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '', api: '' }));
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: '',
+      api: '',
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -44,7 +67,7 @@ const BookADemo = () => {
     setErrors((prev) => ({ ...prev, api: '' }));
 
     try {
-      const response = await fetch('http://localhost:8080/api/demo-requests', {
+      const response = await fetch(`${API_BASE_URL}/api/demo-requests`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,30 +82,25 @@ const BookADemo = () => {
       const data = await response.json().catch(() => null);
 
       if (!response.ok) {
-        if (data?.errors) {
-          setErrors((prev) => ({
-            ...prev,
-            name: data.errors.name || '',
-            email: data.errors.email || '',
-            phone: data.errors.phone || '',
-            api: data.message || 'Failed to submit demo request.',
-          }));
-        } else {
-          setErrors((prev) => ({
-            ...prev,
-            api: data?.message || 'Failed to submit demo request.',
-          }));
-        }
+        setErrors((prev) => ({
+          ...prev,
+          name: data?.errors?.name || '',
+          email: data?.errors?.email || '',
+          phone: data?.errors?.phone || '',
+          api: data?.message || 'Failed to submit demo request.',
+        }));
         return;
       }
 
       setSubmitted(true);
-      setForm({ name: '', email: '', phone: '' });
+      setForm(initialForm);
       setErrors(initialErrors);
     } catch (error) {
+      console.error('Demo submit error:', error);
+
       setErrors((prev) => ({
         ...prev,
-        api: 'Unable to connect to backend. Please make sure Spring Boot is running on port 8080.',
+        api: 'Unable to connect to backend.',
       }));
     } finally {
       setLoading(false);
@@ -200,7 +218,7 @@ const BookADemo = () => {
                       className={`demo-submit ${loading ? 'loading' : ''}`}
                       disabled={loading}
                     >
-                      {loading ? 'Submitting…' : 'Book My Demo'}
+                      {loading ? 'Submitting...' : 'Book My Demo'}
                       <span className="demo-submit-arrow">→</span>
                     </button>
                   </form>

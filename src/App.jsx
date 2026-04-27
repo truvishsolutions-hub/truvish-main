@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './pages/ScrollToTop';
 import Home from './pages/Home';
 import HowItWorks from './pages/HowItWorks';
 import Solutions from './pages/Solutions';
@@ -15,6 +16,7 @@ import './index.css';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

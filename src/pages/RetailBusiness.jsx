@@ -54,6 +54,11 @@ const RetailBusinesses = () => {
                 <div className="audience-step-number">3</div>
                 <div className="audience-step-text">Returns, repeats & spends more</div>
               </div>
+
+              <Link to="/for-influencers" className="audience-next-link">
+                <span className="link-text">Explore next use cases</span>
+                <span className="link-arrow">→</span>
+              </Link>
             </div>
           </div>
         </div>

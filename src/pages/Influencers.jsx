@@ -53,6 +53,11 @@ const Influencers = () => {
                 <div className="audience-step-number">3</div>
                 <div className="audience-step-text">Engagement & loyalty spike</div>
               </div>
+
+              <Link to="/for-d2c-brand-owners" className="audience-next-link">
+                <span className="link-text">Explore next use cases</span>
+                <span className="link-arrow">→</span>
+              </Link>
             </div>
           </div>
         </div>

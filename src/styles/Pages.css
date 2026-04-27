@@ -1431,3 +1431,48 @@
 .mt-6 { margin-top: 24px; }
 .mb-4 { margin-bottom: 16px; }
 .mb-6 { margin-bottom: 24px; }
+
+.audience-next-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  margin-top: 20px;
+  border-radius: var(--radius-full);
+  background: rgba(26, 176, 135, 0.12);
+  border: 1px solid rgba(26, 176, 135, 0.28);
+  color: var(--teal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.audience-next-link .link-text {
+  display: inline-block;
+}
+
+.audience-next-link .link-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 0.95rem;
+}
+
+.audience-next-link:hover {
+  background: rgba(26, 176, 135, 0.22);
+  border-color: rgba(26, 176, 135, 0.55);
+  color: var(--white);
+}
+
+.audience-next-link:hover .link-arrow {
+  transform: translateX(6px) scale(1.15);
+}
