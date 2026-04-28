@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
-const REDEEM_URL = "https://modest-patience-production-eab9.up.railway.app";
-const CLIENT_LOGIN_URL = "https://client-request-production.up.railway.app";
+const REDEEM_URL = "https://redeem.truvish.com/";
+const CLIENT_LOGIN_URL = "https://client.truvish.com/";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
