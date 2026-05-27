@@ -16,34 +16,71 @@ const initialForm = {
 };
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || 'https://truvish-backend-production.up.railway.app';
+  import.meta.env.VITE_API_BASE_URL ||
+  'https://truvish-backend-production.up.railway.app';
 
 const BookADemo = () => {
+
   const [form, setForm] = useState(initialForm);
-  const [errors, setErrors] = useState(initialErrors);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] =
+    useState(initialErrors);
+
+  const [submitted, setSubmitted] =
+    useState(false);
+
+  const [loading, setLoading] =
+    useState(false);
+
+  // =========================================================
+  // VALIDATE
+  // =========================================================
 
   const validate = () => {
-    const nextErrors = { ...initialErrors };
+
+    const nextErrors = {
+      ...initialErrors,
+    };
 
     if (!form.name.trim()) {
-      nextErrors.name = 'Please enter your name.';
+
+      nextErrors.name =
+        'Please enter your name.';
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
-      nextErrors.email = 'Please enter a valid email address.';
+    if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(form.email.trim())
+    ) {
+
+      nextErrors.email =
+        'Please enter a valid email address.';
     }
 
-    if (!/^[\d\s+\-()]{7,15}$/.test(form.phone.trim())) {
-      nextErrors.phone = 'Please enter a valid phone number.';
+    if (
+      !/^[\d\s+\-()]{7,15}$/
+        .test(form.phone.trim())
+    ) {
+
+      nextErrors.phone =
+        'Please enter a valid phone number.';
     }
 
     setErrors(nextErrors);
-    return !nextErrors.name && !nextErrors.email && !nextErrors.phone;
+
+    return (
+      !nextErrors.name &&
+      !nextErrors.email &&
+      !nextErrors.phone
+    );
   };
 
+  // =========================================================
+  // HANDLE CHANGE
+  // =========================================================
+
   const handleChange = (e) => {
+
     const { name, value } = e.target;
 
     setForm((prev) => ({
@@ -58,51 +95,73 @@ const BookADemo = () => {
     }));
   };
 
+  // =========================================================
+  // SUBMIT
+  // =========================================================
+
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
     if (!validate()) return;
 
     setLoading(true);
-    setErrors((prev) => ({ ...prev, api: '' }));
+
+    setErrors(initialErrors);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/book-demo`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: form.name.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-        }),
-      });
 
-      const data = await response.json().catch(() => null);
+      const response = await fetch(
+        `${API_BASE_URL}/api/book-demo`,
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type':
+              'application/json',
+          },
+
+          body: JSON.stringify({
+            name: form.name.trim(),
+            email: form.email.trim(),
+            phone: form.phone.trim(),
+          }),
+        }
+      );
+
+      const data =
+        await response.json();
 
       if (!response.ok) {
-        setErrors((prev) => ({
-          ...prev,
-          name: data?.errors?.name || '',
-          email: data?.errors?.email || '',
-          phone: data?.errors?.phone || '',
-          api: data?.message || 'Failed to submit demo request.',
-        }));
-        return;
+
+        throw new Error(
+          data?.message ||
+          'Failed to submit request'
+        );
       }
 
+      // SUCCESS
+
       setSubmitted(true);
+
       setForm(initialForm);
-      setErrors(initialErrors);
+
     } catch (error) {
-      console.error('Demo submit error:', error);
+
+      console.error(
+        'Demo Submit Error:',
+        error
+      );
 
       setErrors((prev) => ({
         ...prev,
-        api: 'Unable to connect to backend.',
+        api:
+          error.message ||
+          'Unable to connect to backend.',
       }));
+
     } finally {
+
       setLoading(false);
     }
   };
@@ -112,137 +171,186 @@ const BookADemo = () => {
       <div className="cursor-glow"></div>
 
       <main className="demo-page">
+
         <div className="container">
+
           <div className="demo-container">
+
+            {/* LEFT */}
+
             <div className="demo-copy">
-              <div className="demo-pill">Free · No Commitment</div>
+
+              <div className="demo-pill">
+                Free · No Commitment
+              </div>
 
               <h1>
                 Let&apos;s show you
                 <br />
-                <span>TruVish in action.</span>
+                <span>
+                  TruVish in action.
+                </span>
               </h1>
 
               <p>
-                A quick 20-minute walkthrough tailored to your business. See exactly
-                how reward campaigns work — from setup to redemption to revenue
-                attribution.
+                A quick 20-minute walkthrough
+                tailored to your business.
               </p>
 
-              <div className="demo-trust">
-                <div className="demo-trust-item">
-                  <div className="demo-trust-icon">⏱️</div>
-                  20-minute focused demo
-                </div>
-
-                <div className="demo-trust-item">
-                  <div className="demo-trust-icon">✓</div>
-                  Tailored to your use case
-                </div>
-
-                <div className="demo-trust-item">
-                  <div className="demo-trust-icon">🔒</div>
-                  No credit card required
-                </div>
-
-                <div className="demo-trust-item">
-                  <div className="demo-trust-icon">📞</div>
-                  We&apos;ll call you within 24 hours
-                </div>
-              </div>
             </div>
 
+            {/* RIGHT */}
+
             <div className="demo-card">
+
               {!submitted ? (
+
                 <div>
-                  <p className="demo-card-title">Book your free demo</p>
-                  <p className="demo-card-sub">
-                    Fill in your details and we&apos;ll be in touch shortly.
+
+                  <p className="demo-card-title">
+                    Book your free demo
                   </p>
 
-                  <form onSubmit={handleSubmit} noValidate>
+                  <form
+                    onSubmit={handleSubmit}
+                    noValidate
+                  >
+
+                    {/* NAME */}
+
                     <div className="form-group">
-                      <label htmlFor="demoName">Full Name</label>
+
+                      <label>
+                        Full Name
+                      </label>
+
                       <input
-                        id="demoName"
                         type="text"
                         name="name"
-                        placeholder="e.g. Your Name"
+                        placeholder="Your Name"
                         value={form.name}
                         onChange={handleChange}
-                        className={errors.name ? 'error' : ''}
+                        className={
+                          errors.name
+                            ? 'error'
+                            : ''
+                        }
                       />
-                      {errors.name ? (
-                        <span className="field-error">{errors.name}</span>
-                      ) : null}
+
+                      {errors.name && (
+                        <span className="field-error">
+                          {errors.name}
+                        </span>
+                      )}
                     </div>
 
+                    {/* EMAIL */}
+
                     <div className="form-group">
-                      <label htmlFor="demoEmail">Email Address</label>
+
+                      <label>
+                        Email Address
+                      </label>
+
                       <input
-                        id="demoEmail"
                         type="email"
                         name="email"
-                        placeholder="e.g. name@yourbrand.com"
+                        placeholder="name@email.com"
                         value={form.email}
                         onChange={handleChange}
-                        className={errors.email ? 'error' : ''}
+                        className={
+                          errors.email
+                            ? 'error'
+                            : ''
+                        }
                       />
-                      {errors.email ? (
-                        <span className="field-error">{errors.email}</span>
-                      ) : null}
+
+                      {errors.email && (
+                        <span className="field-error">
+                          {errors.email}
+                        </span>
+                      )}
                     </div>
+
+                    {/* PHONE */}
 
                     <div className="form-group">
-                      <label htmlFor="demoPhone">Phone Number</label>
+
+                      <label>
+                        Phone Number
+                      </label>
+
                       <input
-                        id="demoPhone"
                         type="tel"
                         name="phone"
-                        placeholder="e.g. +91 98765 43210"
+                        placeholder="+91 9876543210"
                         value={form.phone}
                         onChange={handleChange}
-                        className={errors.phone ? 'error' : ''}
+                        className={
+                          errors.phone
+                            ? 'error'
+                            : ''
+                        }
                       />
-                      {errors.phone ? (
-                        <span className="field-error">{errors.phone}</span>
-                      ) : null}
+
+                      {errors.phone && (
+                        <span className="field-error">
+                          {errors.phone}
+                        </span>
+                      )}
                     </div>
 
-                    {errors.api ? (
-                      <div className="api-error-message">{errors.api}</div>
-                    ) : null}
+                    {/* API ERROR */}
+
+                    {errors.api && (
+
+                      <div className="api-error-message">
+                        {errors.api}
+                      </div>
+                    )}
+
+                    {/* BUTTON */}
 
                     <button
                       type="submit"
-                      className={`demo-submit ${loading ? 'loading' : ''}`}
                       disabled={loading}
+                      className="demo-submit"
                     >
-                      {loading ? 'Submitting...' : 'Book My Demo'}
-                      <span className="demo-submit-arrow">→</span>
+
+                      {loading
+                        ? 'Submitting...'
+                        : 'Book My Demo'}
+
                     </button>
+
                   </form>
 
-                  <p className="demo-privacy">
-                    🔐 Your information is safe with us. No spam, ever.
-                  </p>
                 </div>
+
               ) : (
+
                 <div className="thankyou-state show">
-                  <div className="thankyou-icon">✓</div>
 
-                  <h2 className="thankyou-title">You&apos;re all set! 🎉</h2>
+                  <div className="thankyou-icon">
+                    ✓
+                  </div>
 
-                  <p className="thankyou-msg">
-                    Thanks for reaching out. Our team will contact you within{' '}
-                    <strong>24 hours</strong> to schedule your personalised
-                    TruVish demo.
+                  <h2>
+                    You&apos;re all set! 🎉
+                  </h2>
+
+                  <p>
+                    Our team will contact you
+                    within 24 hours.
                   </p>
 
-                  <Link to="/" className="thankyou-back">
+                  <Link
+                    to="/"
+                    className="thankyou-back"
+                  >
                     Back to Home
-                    <span>→</span>
                   </Link>
+
                 </div>
               )}
             </div>
