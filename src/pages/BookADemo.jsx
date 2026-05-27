@@ -67,7 +67,7 @@ const BookADemo = () => {
     setErrors((prev) => ({ ...prev, api: '' }));
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/demo-requests`, {
+      const response = await fetch(`${API_BASE_URL}/api/book-demo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
